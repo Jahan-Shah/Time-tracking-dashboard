@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+import TrackingItem from "./components/TrackingItem.vue";
+</script>
 
-<template></template>
+<template>
+  <TrackingItem />
+</template>
 
 <style scoped></style>
