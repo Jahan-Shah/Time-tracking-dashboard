@@ -2,6 +2,22 @@
 import { onMounted, ref } from "vue";
 
 const jsonData = ref([]);
+const props = defineProps(["selectedDuration"]);
+
+function getCurrentTime(item) {
+  if (props.selectedDuration === "Day") return item.timeframes.daily.current;
+  else if (props.selectedDuration === "Week")
+    return item.timeframes.weekly.current;
+  else if (props.selectedDuration === "Month")
+    return item.timeframes.monthly.current;
+}
+function getPreviousTime(item) {
+  if (props.selectedDuration === "Day") return item.timeframes.daily.previous;
+  else if (props.selectedDuration === "Week")
+    return item.timeframes.weekly.previous;
+  else if (props.selectedDuration === "Month")
+    return item.timeframes.monthly.previous;
+}
 
 async function fetchData() {
   try {
@@ -29,8 +45,10 @@ const getTitle = (item) => {
           <h3>{{ item.title }}</h3>
           <img src="/icon-ellipsis.svg" alt="ellipsis" />
         </div>
-        <h2>{{ item.timeframes.weekly.current }}hrs</h2>
-        <p>Last Week - {{ item.timeframes.weekly.previous }}hrs</p>
+        <h2>{{ getCurrentTime(item) }}hrs</h2>
+        <p>
+          Last {{ props.selectedDuration }} - {{ getPreviousTime(item) }}hrs
+        </p>
       </div>
     </div>
   </div>
