@@ -39,7 +39,11 @@ const getTitle = (item) => {
 <template>
   <div class="item__container">
     <div class="item" :class="getTitle(item)" v-for="item in jsonData">
-      <img class="item__svg" :src="`/icon-${getTitle(item)}.svg`" alt="" />
+      <img
+        class="item__svg"
+        :src="`/icon-${getTitle(item)}.svg`"
+        alt="tracking icon"
+      />
       <div class="item__content">
         <div class="heading">
           <h3>{{ item.title }}</h3>
@@ -101,13 +105,14 @@ h3 {
 }
 
 h2 {
+  padding-top: 1.6rem;
   font-size: 3.5rem;
   font-weight: var(--fw-reg);
 }
 
 p {
   font-weight: var(--fw-reg);
-  font-size: 0.85rem;
+  font-size: 0.96rem;
   color: var(--neutral-400);
 }
 
