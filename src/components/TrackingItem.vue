@@ -74,7 +74,7 @@ const getTitle = (item) => {
   background-color: var(--neutral-200);
   z-index: 1;
 
-  border-radius: 0.8rem 0.8rem 0 0;
+  border-radius: 0.8rem;
 }
 
 h3 {
