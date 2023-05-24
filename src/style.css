@@ -21,6 +21,8 @@
   --neutral-200: hsl(235, 46%, 20%);
   --neutral-300: hsl(235, 45%, 61%);
   --neutral-400: hsl(236, 100%, 87%);
+
+  --neutral-200L: hsl(236, 41%, 34%);
 }
 
 body {
