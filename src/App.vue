@@ -10,8 +10,10 @@ const selectedDuration = ref("Week");
     <div class="user">
       <div class="profile">
         <img src="/image-jeremy.png" alt="profile picture" />
-        <p>Report for</p>
-        <h1>Jeremy<br />Robson</h1>
+        <div class="username">
+          <p>Report for</p>
+          <h1>Jeremy Robson</h1>
+        </div>
       </div>
       <div class="filter">
         <input type="radio" id="daily" value="Day" v-model="selectedDuration" />
@@ -39,12 +41,13 @@ const selectedDuration = ref("Week");
 
 <style scoped>
 h1 {
+  line-height: 1.2;
   font-size: 2.5rem;
   font-weight: var(--fw-reg);
 }
 
 img {
-  width: 6rem;
+  height: 6rem;
   aspect-ratio: 1;
   border: 3px solid white;
   border-radius: 50%;
@@ -53,6 +56,12 @@ img {
 section {
   display: flex;
   gap: 30px;
+}
+
+p {
+  font-size: 1rem;
+  color: var(--neutral-400);
+  padding-top: 2.6rem;
 }
 
 .user {
@@ -66,13 +75,15 @@ section {
 }
 
 .filter {
+  height: 100%;
+  padding: 22px 34px 32px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .profile {
-  padding: 32px 28px;
-  padding-bottom: 76px;
+  padding: 32px 28px 20%;
   color: white;
   background-color: var(--clr-primary);
   border-radius: 0.8rem;
@@ -83,12 +94,56 @@ input[type="radio"] {
 }
 
 label {
-  color: white;
+  color: var(--neutral-300);
   display: inline-block;
   cursor: pointer;
 }
 
-input[type="radio"]:checked + label {
-  text-decoration: underline;
+input[type="radio"]:is(:hover, :checked) + label {
+  color: white;
+}
+
+@media (max-width: 539px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  section {
+    margin-top: 2rem;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+  }
+  .user {
+    width: 325px;
+  }
+
+  .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 32px 28px;
+  }
+  .username {
+    display: block;
+  }
+
+  img {
+    height: 4rem;
+  }
+
+  p {
+    padding: 0;
+  }
+
+  .item__container {
+    grid-template-columns: 1fr;
+  }
+
+  .filter {
+    flex-direction: row;
+    padding: 22px 34px;
+  }
 }
 </style>
