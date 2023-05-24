@@ -47,12 +47,14 @@ const getTitle = (item) => {
       <div class="item__content">
         <div class="heading">
           <h3>{{ item.title }}</h3>
-          <img src="/icon-ellipsis.svg" alt="ellipsis" />
+          <img class="ellipsis" src="/icon-ellipsis.svg" alt="ellipsis" />
         </div>
-        <h2>{{ getCurrentTime(item) }}hrs</h2>
-        <p>
-          Last {{ props.selectedDuration }} - {{ getPreviousTime(item) }}hrs
-        </p>
+        <div class="item__content-text">
+          <h2>{{ getCurrentTime(item) }}hrs</h2>
+          <p>
+            Last {{ props.selectedDuration }} - {{ getPreviousTime(item) }}hrs
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -99,6 +101,11 @@ const getTitle = (item) => {
   border-radius: 0.8rem;
 }
 
+.item__content:hover {
+  cursor: pointer;
+  background-color: var(--neutral-200L);
+}
+
 h3 {
   font-size: 1.125rem;
   font-weight: var(--fw-med);
@@ -124,6 +131,21 @@ p {
     width: 330px;
     grid-column: span 1;
   }
+
+  .item__content-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    padding: 0;
+  }
+}
+
+.ellipsis:hover {
+  cursor: pointer;
 }
 
 .work {
