@@ -4,19 +4,22 @@ import { onMounted, ref } from "vue";
 const jsonData = ref([]);
 const props = defineProps(["selectedDuration"]);
 
-function getCurrentTime(item) {
-  if (props.selectedDuration === "Day") return item.timeframes.daily.current;
+function getTime(item) {
+  if (props.selectedDuration === "Day")
+    return {
+      current: item.timeframes.daily.current,
+      previous: item.timeframes.daily.previous,
+    };
   else if (props.selectedDuration === "Week")
-    return item.timeframes.weekly.current;
+    return {
+      current: item.timeframes.weekly.current,
+      previous: item.timeframes.weekly.previous,
+    };
   else if (props.selectedDuration === "Month")
-    return item.timeframes.monthly.current;
-}
-function getPreviousTime(item) {
-  if (props.selectedDuration === "Day") return item.timeframes.daily.previous;
-  else if (props.selectedDuration === "Week")
-    return item.timeframes.weekly.previous;
-  else if (props.selectedDuration === "Month")
-    return item.timeframes.monthly.previous;
+    return {
+      current: item.timeframes.monthly.current,
+      previous: item.timeframes.monthly.previous,
+    };
 }
 
 async function fetchData() {
@@ -50,9 +53,9 @@ const getTitle = (item) => {
           <img class="ellipsis" src="/icon-ellipsis.svg" alt="ellipsis" />
         </div>
         <div class="item__content-text">
-          <h2>{{ getCurrentTime(item) }}hrs</h2>
+          <h2>{{ getTime(item).current }}hrs</h2>
           <p>
-            Last {{ props.selectedDuration }} - {{ getPreviousTime(item) }}hrs
+            Last {{ props.selectedDuration }} - {{ getTime(item).previous }}hrs
           </p>
         </div>
       </div>
